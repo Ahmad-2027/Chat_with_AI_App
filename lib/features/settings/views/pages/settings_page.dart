@@ -47,8 +47,9 @@ class _SettingsPageState extends State<SettingsPage> {
         if (state is Unauthenticated) {
           Navigator.of(context).popUntil((route) => route.isFirst);
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.message)));
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(strings.text(state.message))));
         }
       },
       child: Scaffold(
@@ -150,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
               if (state.error != null) ...[
                 const SizedBox(height: 12),
                 Text(
-                  state.error!,
+                  strings.text(state.error!),
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),
               ],
@@ -180,12 +181,10 @@ class _SettingsPageState extends State<SettingsPage> {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(strings.text('nameSaved'))));
       }
-    } catch (error) {
+    } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${strings.text('profileSaveError')}: $error'),
-          ),
+          SnackBar(content: Text(strings.text('somethingWentWrong'))),
         );
       }
     } finally {

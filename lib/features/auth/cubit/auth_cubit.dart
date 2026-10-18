@@ -45,8 +45,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(const AuthLoading());
     try {
       await _repository.signInWithGoogle();
-    } catch (error) {
-      emit(AuthFailure(error.toString()));
+    } catch (_) {
+      emit(const AuthFailure('somethingWentWrong'));
     }
   }
 
@@ -54,8 +54,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(const AuthLoading());
     try {
       await _repository.signOut();
-    } catch (error) {
-      emit(AuthFailure(error.toString()));
+    } catch (_) {
+      emit(const AuthFailure('somethingWentWrong'));
     }
   }
 

@@ -42,7 +42,7 @@ class ChatHistoryPage extends StatelessWidget {
                   if (state.error != null) ...[
                     const SizedBox(height: 16),
                     Text(
-                      state.error!,
+                      strings.text(state.error!),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.error,
@@ -98,11 +98,11 @@ class ChatHistoryPage extends StatelessWidget {
     if (shouldDelete != true || !context.mounted) return;
     try {
       await context.read<ChatCubit>().deleteChat(chatId);
-    } catch (error) {
+    } catch (_) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${strings.text('deleteChatFailed')}: $error'),
+          content: Text(strings.text('somethingWentWrong')),
           behavior: SnackBarBehavior.floating,
         ),
       );

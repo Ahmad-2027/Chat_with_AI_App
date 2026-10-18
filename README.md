@@ -28,6 +28,10 @@ flutter run
 
 Google sign-in requires the platform OAuth setup above. Web and desktop Firebase
 options are not configured in this project.
+The app checks for internet access before initializing and displays a
+localized offline notice if the connection is unavailable or lost. Internet
+access is required for Google sign-in and AI responses; locally saved chats
+remain on the device.
 
 ## Splash screen
 

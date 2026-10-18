@@ -11,5 +11,13 @@ void main() {
       AppStrings(const Locale('ar')).text('firstWelcomeTitle'),
       'مرحبًا بك في أورا!',
     );
+    expect(
+      AppStrings(const Locale('en')).text('noInternetConnection'),
+      'No internet connection. Check your connection and try again.',
+    );
+    expect(
+      AppStrings(const Locale('ar')).text('somethingWentWrong'),
+      'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
+    );
   });
 }

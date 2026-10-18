@@ -76,7 +76,7 @@ class SignInPage extends StatelessWidget {
                           if (state is AuthFailure) ...[
                             const SizedBox(height: 16),
                             Text(
-                              state.message,
+                              strings.text(state.message),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.error,

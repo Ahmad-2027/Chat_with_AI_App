@@ -76,6 +76,9 @@ class AppStrings {
     'today': 'Today',
     'yesterday': 'Yesterday',
     'signInError': 'Sign in failed. Please try again.',
+    'somethingWentWrong': 'Something went wrong. Please try again.',
+    'noInternetConnection':
+        'No internet connection. Check your connection and try again.',
   };
 
   static const Map<String, String> _arabic = {
@@ -142,5 +145,8 @@ class AppStrings {
     'today': 'اليوم',
     'yesterday': 'أمس',
     'signInError': 'تعذّر تسجيل الدخول. حاول مرة أخرى.',
+    'somethingWentWrong': 'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
+    'noInternetConnection':
+        'لا يوجد اتصال بالإنترنت. تحقق من اتصالك وحاول مرة أخرى.',
   };
 }

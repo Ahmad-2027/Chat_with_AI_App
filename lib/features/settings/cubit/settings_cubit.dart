@@ -44,8 +44,8 @@ class SettingsCubit extends Cubit<SettingsState> {
           locale: Locale(preferences.getString(_languageKey) ?? 'en'),
         ),
       );
-    } catch (error) {
-      emit(state.copyWith(error: error.toString()));
+    } catch (_) {
+      emit(state.copyWith(error: 'somethingWentWrong'));
     }
   }
 
@@ -55,8 +55,8 @@ class SettingsCubit extends Cubit<SettingsState> {
     try {
       final preferences = await SharedPreferences.getInstance();
       await preferences.setBool(_themeKey, enabled);
-    } catch (error) {
-      emit(state.copyWith(error: error.toString()));
+    } catch (_) {
+      emit(state.copyWith(error: 'somethingWentWrong'));
     }
   }
 
@@ -65,8 +65,8 @@ class SettingsCubit extends Cubit<SettingsState> {
     try {
       final preferences = await SharedPreferences.getInstance();
       await preferences.setString(_languageKey, languageCode);
-    } catch (error) {
-      emit(state.copyWith(error: error.toString()));
+    } catch (_) {
+      emit(state.copyWith(error: 'somethingWentWrong'));
     }
   }
 }

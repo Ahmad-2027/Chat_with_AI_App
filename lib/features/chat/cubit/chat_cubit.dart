@@ -50,8 +50,8 @@ class ChatCubit extends Cubit<ChatState> {
     try {
       final chats = await _repository.loadChats(_userId);
       if (!isClosed) emit(state.copyWith(chats: chats));
-    } catch (error) {
-      if (!isClosed) emit(state.copyWith(error: error.toString()));
+    } catch (_) {
+      if (!isClosed) emit(state.copyWith(error: 'somethingWentWrong'));
     }
   }
 
@@ -70,8 +70,8 @@ class ChatCubit extends Cubit<ChatState> {
       if (!isClosed && state.chatId == chatId) {
         emit(state.copyWith(messages: messages));
       }
-    } catch (error) {
-      if (!isClosed) emit(state.copyWith(error: error.toString()));
+    } catch (_) {
+      if (!isClosed) emit(state.copyWith(error: 'somethingWentWrong'));
     }
   }
 
@@ -235,7 +235,7 @@ class ChatCubit extends Cubit<ChatState> {
           state.copyWith(
             chatId: chatId,
             isSending: false,
-            error: error.toString(),
+            error: 'somethingWentWrong',
           ),
         );
       }

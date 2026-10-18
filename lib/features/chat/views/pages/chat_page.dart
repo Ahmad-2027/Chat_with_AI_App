@@ -44,10 +44,10 @@ class _ChatPageState extends State<ChatPage> {
         );
       }
       setState(() => _attachments.addAll(selected));
-    } catch (error) {
+    } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Could not read selected files: $error')),
+          SnackBar(content: Text(AppStrings.of(context).text('uploadFailed'))),
         );
       }
     }
@@ -141,11 +141,11 @@ class _ChatPageState extends State<ChatPage> {
         _editingAttachments = [];
         _promptController.clear();
       });
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${strings.text('editMessageFailed')}: $error'),
+          content: Text(strings.text('somethingWentWrong')),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -166,13 +166,11 @@ class _ChatPageState extends State<ChatPage> {
   Future<void> _openAttachment(ChatAttachment attachment) async {
     try {
       await _attachmentOpener.open(attachment);
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            '${AppStrings.of(context).text('openAttachmentFailed')}: $error',
-          ),
+          content: Text(AppStrings.of(context).text('somethingWentWrong')),
         ),
       );
     }
@@ -191,7 +189,7 @@ class _ChatPageState extends State<ChatPage> {
         if (state.error != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.error ?? strings.text('aiError')),
+              content: Text(strings.text(state.error ?? 'somethingWentWrong')),
               behavior: SnackBarBehavior.floating,
             ),
           );

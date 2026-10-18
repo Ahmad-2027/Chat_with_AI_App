@@ -49,10 +49,10 @@ class _AuthenticatedShellState extends State<AuthenticatedShell> {
         _isProfileReady = true;
         _profileError = null;
       });
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
       setState(() {
-        _profileError = error.toString();
+        _profileError = 'somethingWentWrong';
         _isProfileReady = true;
       });
     }
@@ -71,13 +71,11 @@ class _AuthenticatedShellState extends State<AuthenticatedShell> {
         _displayName = name;
         _showWelcome = false;
       });
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            '${AppStrings.of(context).text('profileSaveError')}: $error',
-          ),
+          content: Text(AppStrings.of(context).text('somethingWentWrong')),
         ),
       );
     }
@@ -102,7 +100,10 @@ class _AuthenticatedShellState extends State<AuthenticatedShell> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(_profileError!, textAlign: TextAlign.center),
+                Text(
+                  AppStrings.of(context).text(_profileError!),
+                  textAlign: TextAlign.center,
+                ),
                 const SizedBox(height: 16),
                 FilledButton(
                   onPressed: () {
