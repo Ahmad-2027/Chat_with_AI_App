@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:chat_app_ai/features/auth/data/repositories/hive_user_profile_repository.dart';
+import 'package:chat_app_ai/features/auth/services/hive_user_profile_repository.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:flutter_test/flutter_test.dart';
 

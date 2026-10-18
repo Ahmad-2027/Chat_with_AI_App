@@ -1,14 +1,15 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:chat_app_ai/features/auth/data/datasources/google_auth_data_source.dart';
-import 'package:chat_app_ai/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:chat_app_ai/features/auth/data/repositories/hive_user_profile_repository.dart';
-import 'package:chat_app_ai/features/auth/domain/repositories/auth_repository.dart';
-import 'package:chat_app_ai/features/auth/domain/repositories/user_profile_repository.dart';
-import 'package:chat_app_ai/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:chat_app_ai/features/auth/presentation/pages/auth_gate.dart';
-import 'package:chat_app_ai/features/chat/data/repositories/hive_chat_repository.dart';
-import 'package:chat_app_ai/features/chat/domain/repositories/chat_repository.dart';
-import 'package:chat_app_ai/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:chat_app_ai/features/auth/services/google_auth_data_source.dart';
+import 'package:chat_app_ai/features/auth/services/auth_repository_impl.dart';
+import 'package:chat_app_ai/features/auth/services/hive_user_profile_repository.dart';
+import 'package:chat_app_ai/features/auth/services/auth_repository.dart';
+import 'package:chat_app_ai/features/auth/services/user_profile_repository.dart';
+import 'package:chat_app_ai/features/auth/cubit/auth_cubit.dart';
+import 'package:chat_app_ai/features/auth/views/pages/auth_gate.dart';
+import 'package:chat_app_ai/features/chat/services/hive_chat_repository.dart';
+import 'package:chat_app_ai/features/chat/services/chat_repository.dart';
+import 'package:chat_app_ai/features/settings/cubit/settings_cubit.dart';
+import 'package:chat_app_ai/features/auth/views/widgets/splash_logo.dart';
 import 'package:chat_app_ai/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -72,7 +73,7 @@ class MyApp extends StatelessWidget {
           ],
           home: AnimatedSplashScreen(
             duration: 1200,
-            splash: const _SplashLogo(),
+            splash: const SplashLogo(),
             nextScreen: const AuthGate(),
             splashTransition: SplashTransition.fadeTransition,
             backgroundColor: const Color(0xFF7057E8),
@@ -89,27 +90,5 @@ class MyApp extends StatelessWidget {
       seedColor: const Color(0xFF7057E8),
       brightness: brightness,
     ),
-  );
-}
-
-class _SplashLogo extends StatelessWidget {
-  const _SplashLogo();
-
-  @override
-  Widget build(BuildContext context) => const Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 74),
-      SizedBox(height: 12),
-      Text(
-        'aura',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 34,
-          fontWeight: FontWeight.w800,
-          letterSpacing: 1.2,
-        ),
-      ),
-    ],
   );
 }
