@@ -52,5 +52,6 @@ flutter {
 }
 
 dependencies {
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.core:core:1.15.0")
 }

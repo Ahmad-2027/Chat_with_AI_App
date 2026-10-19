@@ -9,6 +9,7 @@ import 'package:chat_app_ai/features/auth/views/pages/auth_gate.dart';
 import 'package:chat_app_ai/features/chat/services/hive_chat_repository.dart';
 import 'package:chat_app_ai/features/chat/services/chat_repository.dart';
 import 'package:chat_app_ai/features/settings/cubit/settings_cubit.dart';
+import 'package:chat_app_ai/features/settings/services/app_lock_service.dart';
 import 'package:chat_app_ai/features/auth/views/widgets/splash_logo.dart';
 import 'package:chat_app_ai/core/network/network_status_banner.dart';
 import 'package:chat_app_ai/core/network/network_status_cubit.dart';
@@ -64,11 +65,15 @@ class MyApp extends StatelessWidget {
         create: (_) => HiveUserProfileRepository(),
       ),
       RepositoryProvider<ChatRepository>.value(value: chatRepository),
+      RepositoryProvider<AppLockService>(create: (_) => AppLockService()),
     ],
     child: MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthCubit(context.read<AuthRepository>()),
+          create: (context) => AuthCubit(
+            context.read<AuthRepository>(),
+            context.read<AppLockService>(),
+          ),
         ),
         BlocProvider(create: (_) => SettingsCubit()),
         BlocProvider.value(value: networkStatusCubit),

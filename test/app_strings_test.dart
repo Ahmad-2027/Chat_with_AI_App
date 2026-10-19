@@ -19,5 +19,13 @@ void main() {
       AppStrings(const Locale('ar')).text('somethingWentWrong'),
       'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
     );
+    expect(
+      AppStrings(const Locale('en')).text('appPasswordLock'),
+      'App password',
+    );
+    expect(
+      AppStrings(const Locale('ar')).text('biometricUnlock'),
+      'بصمة الإصبع / المقاييس الحيوية',
+    );
   });
 }

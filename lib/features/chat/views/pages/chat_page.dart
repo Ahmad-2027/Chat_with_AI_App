@@ -3,6 +3,7 @@ import 'package:chat_app_ai/features/chat/models/chat_attachment.dart';
 import 'package:chat_app_ai/features/chat/models/chat_message.dart';
 import 'package:chat_app_ai/features/chat/cubit/chat_cubit.dart';
 import 'package:chat_app_ai/features/chat/services/local_attachment_opener.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -197,6 +198,12 @@ class _ChatPageState extends State<ChatPage> {
       },
       builder: (context, state) {
         final cubit = context.read<ChatCubit>();
+        final assistantMessages = state.messages.where(
+          (message) => !message.isUser && message.text.isNotEmpty,
+        );
+        final latestAssistantMessageId = assistantMessages.isEmpty
+            ? null
+            : assistantMessages.last.id;
         return Column(
           children: [
             Expanded(
@@ -216,6 +223,7 @@ class _ChatPageState extends State<ChatPage> {
                           state.isSending,
                           cubit,
                           strings,
+                          state.messages[index].id == latestAssistantMessageId,
                         );
                       },
                     ),
@@ -302,6 +310,7 @@ class _ChatPageState extends State<ChatPage> {
     bool isSending,
     ChatCubit cubit,
     AppStrings strings,
+    bool shouldAnimate,
   ) {
     final scheme = Theme.of(context).colorScheme;
     final isUser = message.isUser;
@@ -337,6 +346,21 @@ class _ChatPageState extends State<ChatPage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+              )
+            else if (message.text.isNotEmpty && !isUser && shouldAnimate)
+              AnimatedTextKit(
+                key: ValueKey(message.id),
+                isRepeatingAnimation: false,
+                displayFullTextOnTap: true,
+                onFinished: _scrollToLatest,
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    message.text,
+                    speed: const Duration(milliseconds: 18),
+                    cursor: '|',
+                    textStyle: TextStyle(color: scheme.onSurface, height: 1.45),
+                  ),
+                ],
               )
             else if (message.text.isNotEmpty)
               SelectableText(

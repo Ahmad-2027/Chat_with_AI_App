@@ -16,6 +16,12 @@ class AuthGate extends StatelessWidget {
           user: state.user,
         );
       }
+      if (state is AuthSignOutFailure) {
+        return AuthenticatedShell(
+          key: ValueKey(state.user.id),
+          user: state.user,
+        );
+      }
       if (state is Unauthenticated ||
           state is AuthFailure ||
           state is AuthLoading) {

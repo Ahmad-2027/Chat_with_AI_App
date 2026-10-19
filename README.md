@@ -19,6 +19,11 @@ This data is not uploaded or synchronized, and is only available on the device
 where it was created. Image attachments are also sent to Gemini when a prompt is
 submitted; other attachment types are retained locally in the chat.
 
+The Settings page can protect the app with a password and, when biometrics are
+enrolled on the device, fingerprint or another supported biometric. Lock
+credentials are stored in the platform's secure storage, and logging out
+removes that account's app-lock settings.
+
 ## Run
 
 ```shell
