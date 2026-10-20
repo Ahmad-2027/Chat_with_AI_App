@@ -65,8 +65,26 @@ class _ChatPageState extends State<ChatPage> {
       'mp4' => 'video/mp4',
       'mov' => 'video/quicktime',
       'webm' => 'video/webm',
+      'flv' => 'video/x-flv',
+      'mpg' || 'mpeg' => 'video/mpeg',
+      'wmv' => 'video/wmv',
+      '3gp' => 'video/3gpp',
+      'mp3' => 'audio/mpeg',
+      'm4a' => 'audio/m4a',
+      'aac' => 'audio/aac',
+      'flac' => 'audio/flac',
+      'wav' => 'audio/wav',
+      'opus' => 'audio/opus',
       'pdf' => 'application/pdf',
       'txt' => 'text/plain',
+      'csv' ||
+      'json' ||
+      'xml' ||
+      'html' ||
+      'md' ||
+      'log' ||
+      'yaml' ||
+      'yml' => 'text/plain',
       'doc' => 'application/msword',
       'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'xls' => 'application/vnd.ms-excel',

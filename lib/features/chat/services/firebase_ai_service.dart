@@ -26,9 +26,10 @@ class FirebaseAiService {
     } else if (attachments.isNotEmpty) {
       parts.add(const TextPart('Please describe these attachments.'));
     }
-    for (final attachment in attachments.where(
-      (file) => file.mimeType.startsWith('image/'),
-    )) {
+    for (final attachment in attachments) {
+      parts.add(
+        TextPart('Attached file: ${attachment.name} (${attachment.mimeType})'),
+      );
       parts.add(InlineDataPart(attachment.mimeType, attachment.bytes));
     }
     contents.add(Content.multi(parts));

@@ -153,6 +153,7 @@ class _AuthenticatedShellState extends State<AuthenticatedShell>
             excluding: isLocked,
             child: _buildAuthenticatedPage(context),
           ),
+          
         ),
         if (isLocked) _buildAppLockScreen(context),
       ],

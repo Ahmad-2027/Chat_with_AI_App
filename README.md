@@ -16,8 +16,11 @@ Firebase account has its own local chat database, keyed by its stable user ID.
 The user's display name is also stored locally in Hive, while SharedPreferences
 tracks whether that account has completed the first-login welcome screen.
 This data is not uploaded or synchronized, and is only available on the device
-where it was created. Image attachments are also sent to Gemini when a prompt is
-submitted; other attachment types are retained locally in the chat.
+where it was created. All selected attachments are sent to Gemini with their
+file names and MIME types when a prompt is submitted. Gemini can only process
+formats supported by its multimodal API (such as images, PDFs, plain text, and
+supported audio/video formats); other file formats may be rejected by the
+service.
 
 The Settings page can protect the app with a password and, when biometrics are
 enrolled on the device, fingerprint or another supported biometric. Lock
